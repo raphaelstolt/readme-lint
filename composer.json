@@ -1,0 +1,61 @@
+{
+    "name": "stolt/readme-lint",
+    "description": "A library and CLI tool to lint README.md files.",
+    "keywords": [
+        "README.md",
+        "php",
+        "cli",
+        "lint"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "bin": ["bin/readme-lint"],
+    "autoload": {
+        "psr-4": {
+            "Stolt\\ReadmeLint\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Stolt\\ReadmeLint\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raphael Stolt",
+            "email": "raphael.stolt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "phpstan/phpstan": "^2.1",
+        "symfony/console": "^7.3"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.82",
+        "peckphp/peck": "^0.1.3",
+        "phpunit/phpunit": "^12.2",
+        "stolt/lean-package-validator": "^4.4"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "cs-fix": "php-cs-fixer --allow-risky=yes fix . -vv || true",
+        "cs-lint": "php-cs-fixer fix --diff --stop-on-violation --verbose --dry-run --allow-risky=yes",
+        "spell-check": "./vendor/bin/peck",
+        "validate-gitattributes": "./vendor/bin/lean-package-validator validate",
+        "test-with-coverage": "export XDEBUG_MODE=coverage && phpunit --coverage-html coverage-reports",
+        "static-analyse": "phpstan analyse --configuration phpstan.neon.dist",
+        "pre-commit-check": [
+            "@test",
+            "@cs-lint",
+            "@static-analyse",
+            "@spell-check",
+            "@validate-gitattributes"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
