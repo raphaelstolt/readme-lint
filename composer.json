@@ -36,6 +36,7 @@
         "friendsofphp/php-cs-fixer": "^3.82",
         "peckphp/peck": "^0.1.3",
         "phpunit/phpunit": "^12.2",
+        "shipmonk/composer-dependency-analyser": "^1.8",
         "stolt/lean-package-validator": "^4.4"
     },
     "scripts": {
@@ -45,11 +46,13 @@
         "spell-check": "./vendor/bin/peck",
         "validate-gitattributes": "./vendor/bin/lean-package-validator validate",
         "test-with-coverage": "export XDEBUG_MODE=coverage && phpunit --coverage-html coverage-reports",
+        "dependency-analyse": "./vendor/bin/composer-dependency-analyser",
         "static-analyse": "phpstan analyse --configuration phpstan.neon.dist",
         "pre-commit-check": [
             "@test",
             "@cs-lint",
             "@static-analyse",
+            "@dependency-analyse",
             "@spell-check",
             "@validate-gitattributes"
         ]
