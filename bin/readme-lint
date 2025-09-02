@@ -24,7 +24,7 @@ if (false === $autoloaded) {
    exit(1);
 }
 
-\define('VERSION', '0.0.1');
+const VERSION = '0.0.1';
 
 $lintCommand = new LintCommand();
 
