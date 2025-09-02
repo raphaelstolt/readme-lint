@@ -9,7 +9,7 @@ composer require stolt/readme-lint
 ```
 
 ### Available CLI commands
-The following list shows the currently available CLI commands to interact with an README.md file.
+The following list shows the currently available CLI commands to interact with a README.md file.
 
 ``` bash
 php bin/readme-lint list
