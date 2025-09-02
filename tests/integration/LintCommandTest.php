@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Stolt\ReadmeLint\Tests\Integration;
 
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\Console\Application;
@@ -55,22 +56,34 @@ final class LintCommandTest extends TestCase
     }
 
     #[Test]
+    #[RunInSeparateProcess]
     public function passesWithValidReadme(): void
     {
         $path = sys_get_temp_dir() . '/ValidREADME.md';
         file_put_contents($path, <<<MD
-# Installation
+# Project Title
+
+[![Build Status](https://example.com/build.svg)](https://example.com)
+
+## Installation
 Run composer install.
 
-# Usage
+## Usage
 Do something useful.
 
-# License
+```php
+echo "Hello World";
+```
+
+## License
 MIT
 MD);
 
         $tester = $this->getCommandTester();
+
+
         $exitCode = $tester->execute(['file' => $path]);
+
         $this->assertSame(Command::SUCCESS, $exitCode);
         $this->assertStringContainsString('looks good', $tester->getDisplay());
         $this->assertStringContainsString('README score: 1', $tester->getDisplay());

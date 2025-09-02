@@ -21,8 +21,7 @@ final class CurrentCodeBlockRule implements RuleInterface
         foreach ($matches[1] as $i => $code) {
             $snippetPath = $tempDirectory . "/snippet_$i.php";
             file_put_contents($snippetPath, "<?php\n" . trim($code));
-
-            echo "Analyzing snippet #$i..." . PHP_EOL;
+            
             $result = $this->runPHPStan($snippetPath);
 
             if ($result['exitCode'] !== 0) {
