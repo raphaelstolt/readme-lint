@@ -20,6 +20,8 @@ Available commands:
   lint        Lint a README.md file for common quality issues
 ```
 
+Usable rules can be found in the [Rules](src/Rules) directory.
+
 ### Running tests
 
 ``` bash
