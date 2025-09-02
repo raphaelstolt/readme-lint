@@ -5,7 +5,7 @@ This library and its CLI supports you in linting `README.md` Markdown files via 
 ## Installation and usage
 
 ```bash
-composer require stolt/readme-lint
+composer require --dev stolt/readme-lint
 ```
 
 ### Available CLI commands

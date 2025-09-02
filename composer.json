@@ -5,7 +5,8 @@
         "README.md",
         "php",
         "cli",
-        "lint"
+        "lint",
+        "dev"
     ],
     "type": "library",
     "license": "MIT",
