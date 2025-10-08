@@ -8,7 +8,6 @@ use Stolt\ReadmeLint\LintIssue;
 
 final class CurrentCodeBlockRule implements RuleInterface
 {
-
     public function check(string $content): ?LintIssue
     {
         $tempDirectory = '/tmp/rl';
@@ -21,7 +20,7 @@ final class CurrentCodeBlockRule implements RuleInterface
         foreach ($matches[1] as $i => $code) {
             $snippetPath = $tempDirectory . "/snippet_$i.php";
             file_put_contents($snippetPath, "<?php\n" . trim($code));
-            
+
             $result = $this->runPHPStan($snippetPath);
 
             if ($result['exitCode'] !== 0) {
