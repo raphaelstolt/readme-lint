@@ -9,7 +9,7 @@ use Stolt\ReadmeLint\LintIssue;
 final class RequiredSectionsRule implements RuleInterface
 {
     private array $requiredSections = [
-        'Installation', 'Usage', 'License'
+        'Installation', 'Usage', 'License', 'Changelog', 'Tests'
     ];
 
     private function extractHeadings(string $markdown): array
@@ -31,7 +31,17 @@ final class RequiredSectionsRule implements RuleInterface
         $headings = $this->extractHeadings($content);
 
         foreach ($this->requiredSections as $section) {
-            if (!in_array(strtolower($section), $headings, true)) {
+            $sectionLower = strtolower($section);
+            $found = false;
+
+            foreach ($headings as $heading) {
+                if (str_contains($heading, $sectionLower)) {
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
                 return new LintIssue(
                     'Missing required section ' . $section,
                     LintIssue::SEVERITY_ERROR,

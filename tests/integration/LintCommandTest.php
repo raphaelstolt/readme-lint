@@ -77,16 +77,21 @@ echo "Hello World";
 
 ## License
 MIT
+
+## Changelog
+
+## Running tests
+
 MD);
 
         $tester = $this->getCommandTester();
 
-
         $exitCode = $tester->execute(['file' => $path]);
 
         $this->assertSame(Command::SUCCESS, $exitCode);
-        $this->assertStringContainsString('looks good', $tester->getDisplay());
-        $this->assertStringContainsString('README score: 1', $tester->getDisplay());
+        $display = $tester->getDisplay();
+        $this->assertStringContainsString('looks good', $display);
+        $this->assertStringContainsString('README score: 1', $display);
 
         unlink($path);
     }
