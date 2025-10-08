@@ -3,9 +3,11 @@
     "description": "A library and CLI tool to lint README.md files.",
     "keywords": [
         "README.md",
+        "readme",
         "php",
         "cli",
         "lint",
+        "linter",
         "dev"
     ],
     "type": "library",
