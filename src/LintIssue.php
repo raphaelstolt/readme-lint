@@ -15,4 +15,19 @@ final class LintIssue
         public readonly ?string $suggestion = null
     ) {
     }
+
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    public function getSeverity(): string
+    {
+        return $this->severity;
+    }
+
+    public function getSuggestion(): ?string
+    {
+        return $this->suggestion;
+    }
 }

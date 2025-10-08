@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## v0.0.2 - 2025-10-10
+
+### Added
+- New `LogoPresentRule` to check if a logo is present in the README.
+
 ## v0.0.1 - 2025-10-10
 
 - Initial release.
