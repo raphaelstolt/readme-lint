@@ -1,6 +1,6 @@
 {
     "name": "stolt/readme-lint",
-    "description": "A library and CLI tool to lint README.md files.",
+    "description": "A library and CLI to lint README.md files.",
     "keywords": [
         "README.md",
         "readme",
