@@ -6,7 +6,8 @@
 
 # readme-lint
 
-This library and its CLI supports you in linting `README.md` Markdown files via PHP.
+This library and its CLI supports you in linting `README.md` Markdown files via PHP. For inspiration for good READMEs,
+please have a look at the [Awesome README](https://github.com/matiassingers/awesome-readme) repository.
 
 ## Installation and usage
 
@@ -26,7 +27,7 @@ Available commands:
   lint        Lint a README.md file for common quality issues
 ```
 
-Usable rules can be found in the [Rules](src/Rules) directory.
+Available rules can be found in the [Rules](src/Rules) directory.
 
 ### Running tests
 
