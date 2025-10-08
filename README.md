@@ -36,7 +36,7 @@ composer test
 
 ### License
 
-This library is licensed under the MIT license. Please see [LICENSE.md](LICENSE.md) for more details.
+This library and it CLI are licensed under the MIT license. Please see [LICENSE.md](LICENSE.md) for more details.
 
 ### Changelog
 
