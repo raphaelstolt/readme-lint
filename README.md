@@ -1,3 +1,9 @@
+<p align="center">
+    <img src="readme-lint-logo.png"
+         alt="Readme-lint logo"
+         title="Readme-lint logo">
+</p>
+
 # readme-lint
 
 This library and its CLI supports you in linting `README.md` Markdown files via PHP.
