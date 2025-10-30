@@ -3,6 +3,8 @@
 <?php
 
 use Stolt\ReadmeLint\Commands\LintCommand;
+use Stolt\ReadmeLint\Commands\SpellcheckCommand;
+use Stolt\ReadmeLint\Spellchecker;
 use Symfony\Component\Console\Application;
 
 $autoloaded = false;
@@ -23,12 +25,12 @@ if (false === $autoloaded) {
        '> composer install' . PHP_EOL);
    exit(1);
 }
-
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 
 $lintCommand = new LintCommand();
+$spellcheckCommand = new SpellcheckCommand(new Spellchecker('./vendor/bin/peck'));
 
 $application = new Application('readme-lint', VERSION);
-$application->addCommands([$lintCommand]);
+$application->addCommands([$lintCommand, $spellcheckCommand]);
 $application->run();
 

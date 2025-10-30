@@ -7,7 +7,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
-## v0.0.2 - 2025-10-10
+## [v0.1.0] - 2025-10-30
+
+### Added
+- New `spellcheck` command to check spelling in the README. Closes [#2](https://github.com/raphaelstolt/readme-lint/issues/2).
+
+## [v0.0.2] - 2025-10-10
 
 ### Added
 - New `LogoPresentRule` to check if a logo is present in the README.
@@ -16,4 +21,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 - Initial release.
 
-[Unreleased]: https://github.com/raphaelstolt/readme-lint/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/raphaelstolt/readme-lint/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/raphaelstolt/readme-lint/compare/v0.0.2...v0.1.0
+[v0.0.2]: https://github.com/raphaelstolt/readme-lint/compare/v0.0.1...v0.0.2

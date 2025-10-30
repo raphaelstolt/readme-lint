@@ -16,15 +16,16 @@ composer require --dev stolt/readme-lint
 ```
 
 ### Available CLI commands
-The following list shows the currently available CLI commands to interact with a README.md file.
+The following list shows the currently two available CLI commands to interact with a README.md file.
 
 ``` bash
 php bin/readme-lint list
 
-readme-lint 0.0.1
+readme-lint 0.0.2
 
 Available commands:
   lint        Lint a README.md file for common quality issues
+  spellcheck  Check a README.md file for wording or spelling mistakes
 ```
 
 Available rules can be found in the [Rules](src/Rules) directory.
