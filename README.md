@@ -28,7 +28,7 @@ Available commands:
   spellcheck  Check a README.md file for wording or spelling mistakes
 ```
 
-Available rules can be found in the [Rules](src/Rules) directory.
+Available lint rules can be found in the [Rules](src/Rules) directory.
 
 ### Running tests
 
