@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Stolt\ReadmeLint\Tests\Integration;
 
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
+use Stolt\ReadmeLint\Commands\LintCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-use Stolt\ReadmeLint\Commands\LintCommand;
 
 final class LintCommandTest extends TestCase
 {
@@ -41,9 +41,9 @@ final class LintCommandTest extends TestCase
     #[Test]
     public function failsIfDirectoryHasNoReadme(): void
     {
-        $dir = sys_get_temp_dir() . '/readme-lint-dir';
-        if (!is_dir($dir)) {
-            mkdir($dir);
+        $dir = \sys_get_temp_dir() . '/readme-lint-dir';
+        if (!\is_dir($dir)) {
+            \mkdir($dir);
         }
 
         $tester = $this->getCommandTester();
@@ -52,14 +52,14 @@ final class LintCommandTest extends TestCase
         $this->assertSame(1, $exitCode);
         $this->assertStringContainsString('README not found', $tester->getDisplay());
 
-        rmdir($dir);
+        \rmdir($dir);
     }
 
     #[Test]
     #[RunInSeparateProcess]
     public function passesWithValidReadme(): void
     {
-        $path = sys_get_temp_dir() . '/ValidREADME.md';
+        $path = \sys_get_temp_dir() . '/ValidREADME.md';
         file_put_contents($path, <<<MD
 # Project Title
 
@@ -93,13 +93,13 @@ MD);
         $this->assertStringContainsString('looks good', $display);
         $this->assertStringContainsString('README score: 1', $display);
 
-        unlink($path);
+        \unlink($path);
     }
 
     #[Test]
     public function failsWithInvalidReadme(): void
     {
-        $path = sys_get_temp_dir() . '/InvalidREADME.md';
+        $path = \sys_get_temp_dir() . '/InvalidREADME.md';
         file_put_contents($path, <<<MD
 # Installation
 Run composer install.
@@ -115,6 +115,6 @@ MD);
         $this->assertStringContainsString('Found issues in', $tester->getDisplay());
         $this->assertStringContainsString('README score:', $tester->getDisplay());
 
-        unlink($path);
+        \unlink($path);
     }
 }

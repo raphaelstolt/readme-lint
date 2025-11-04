@@ -10,7 +10,7 @@ final class PhpVersionBadgeRule implements RuleInterface
 {
     public function check(string $content): ?LintIssue
     {
-        if (!preg_match('/\bphp\b.*badge.*shields\.io/i', $content) && !preg_match('/img\.shields\.io\/badge\/php-/i', $content)) {
+        if (!\preg_match('/\bphp\b.*badge.*shields\.io/i', $content) && !\preg_match('/img\.shields\.io\/badge\/php-/i', $content)) {
             return new LintIssue(
                 'Missing PHP version badge.',
                 LintIssue::SEVERITY_WARNING,

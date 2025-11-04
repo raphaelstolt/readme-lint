@@ -19,10 +19,10 @@ final class LogoPresenceRule implements RuleInterface
         $markdownImagePattern = '/!\[.*?\]\(([^)]+)\)/';
         $htmlImagePattern = '/<img[^>]+src=["\']([^"\']+)["\']/i';
 
-        preg_match_all($markdownImagePattern, $content, $markdownMatches);
-        preg_match_all($htmlImagePattern, $content, $htmlMatches);
+        \preg_match_all($markdownImagePattern, $content, $markdownMatches);
+        \preg_match_all($htmlImagePattern, $content, $htmlMatches);
 
-        $allImagePaths = array_merge(
+        $allImagePaths = \array_merge(
             $markdownMatches[1] ?? [],
             $htmlMatches[1] ?? []
         );
@@ -31,14 +31,14 @@ final class LogoPresenceRule implements RuleInterface
         $hasLogo = false;
         foreach ($allImagePaths as $imagePath) {
             // Skip external URLs
-            if (preg_match('/^https?:\/\//', $imagePath)) {
+            if (\preg_match('/^https?:\/\//', $imagePath)) {
                 continue;
             }
 
             // Check if it's in art/ directory or base directory (no subdirectory)
             if (
-                str_starts_with($imagePath, 'art/') ||
-                (str_contains(basename($imagePath), 'logo') && !str_contains($imagePath, '/'))
+                \str_starts_with($imagePath, 'art/') ||
+                (\str_contains(\basename($imagePath), 'logo') && !\str_contains($imagePath, '/'))
             ) {
                 $hasLogo = true;
                 break;

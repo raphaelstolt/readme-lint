@@ -18,7 +18,7 @@ class Spellchecker
 
     public function checkSpellcheckerAvailability(): bool
     {
-        return file_exists($this->peckPath);
+        return \file_exists($this->peckPath);
     }
 
     public function runSpellcheckerInit(): Process

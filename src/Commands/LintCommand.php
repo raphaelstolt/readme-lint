@@ -6,13 +6,13 @@ namespace Stolt\ReadmeLint\Commands;
 
 use Stolt\ReadmeLint\Linter;
 use Stolt\ReadmeLint\LintIssue;
+use Stolt\ReadmeLint\Rules\BadgeRule;
+use Stolt\ReadmeLint\Rules\CodeBlockRule;
 use Stolt\ReadmeLint\Rules\CurrentCodeBlockRule;
 use Stolt\ReadmeLint\Rules\HeadingHierarchyRule;
 use Stolt\ReadmeLint\Rules\MaxLineLengthRule;
 use Stolt\ReadmeLint\Rules\NoTodoCommentRule;
 use Stolt\ReadmeLint\Rules\RequiredSectionsRule;
-use Stolt\ReadmeLint\Rules\BadgeRule;
-use Stolt\ReadmeLint\Rules\CodeBlockRule;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -39,15 +39,15 @@ final class LintCommand extends Command
     {
         $path = $input->getArgument('file');
 
-        if (!file_exists($path)) {
+        if (!\file_exists($path)) {
             $output->writeln('README <error>not</error> found at <info>' . $path . '</info>');
             return Command::FAILURE;
         }
 
-        if (is_dir($path)) {
+        if (\is_dir($path)) {
             $directoryPath = $path;
             $path = $path . DIRECTORY_SEPARATOR . 'README.md';
-            if (!file_exists($path)) {
+            if (!\file_exists($path)) {
                 $output->writeln('README <error>not</error> found at <info>' . $directoryPath . '</info>');
                 return Command::FAILURE;
             }

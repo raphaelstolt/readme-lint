@@ -10,7 +10,7 @@ final class BadgeRule implements RuleInterface
 {
     public function check(string $content): ?LintIssue
     {
-        if (!preg_match('/\!\[[^\]]*\]\([^\)]+\)/', $content)) {
+        if (!\preg_match('/\!\[[^\]]*\]\([^\)]+\)/', $content)) {
             return new LintIssue(
                 'No badges found in the README (e.g. build status, coverage, etc.).',
                 LintIssue::SEVERITY_WARNING,

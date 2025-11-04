@@ -18,10 +18,10 @@ final class MaxLineLengthRule implements RuleInterface
     public function check(string $content): ?LintIssue
     {
         $issues = null;
-        $lines = explode(PHP_EOL, $content);
+        $lines = \explode(PHP_EOL, $content);
 
         foreach ($lines as $i => $line) {
-            if (strlen($line) > $this->maxLength) {
+            if (\strlen($line) > $this->maxLength) {
                 $issues .= "Line " . ($i + 1) . " exceeds {$this->maxLength} characters." . PHP_EOL;
             }
         }

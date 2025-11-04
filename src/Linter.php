@@ -24,17 +24,17 @@ final class Linter
 
     public function addRules(array $rules): self
     {
-        $this->rules = array_merge($this->rules, $rules);
+        $this->rules = \array_merge($this->rules, $rules);
         return $this;
     }
 
     public function lint(): array
     {
-        if (!file_exists($this->readmePath)) {
+        if (!\file_exists($this->readmePath)) {
             throw new \RuntimeException("README file not found.");
         }
 
-        $content = file_get_contents($this->readmePath);
+        $content = \file_get_contents($this->readmePath);
         $results = [];
 
         foreach ($this->rules as $rule) {
@@ -44,7 +44,7 @@ final class Linter
             }
         }
 
-        $score = max(0, 100 - (count(array_filter($results, fn ($i) => $i->severity === LintIssue::SEVERITY_ERROR)) * 10 + count(array_filter($results, fn ($i) => $i->severity === LintIssue::SEVERITY_WARNING)) * 5));
+        $score = \max(0, 100 - (\count(\array_filter($results, fn ($i) => $i->severity === LintIssue::SEVERITY_ERROR)) * 10 + \count(\array_filter($results, fn ($i) => $i->severity === LintIssue::SEVERITY_WARNING)) * 5));
 
         return [
             'score' => $score,

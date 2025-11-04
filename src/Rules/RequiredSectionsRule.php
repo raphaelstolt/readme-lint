@@ -14,10 +14,10 @@ final class RequiredSectionsRule implements RuleInterface
 
     private function extractHeadings(string $markdown): array
     {
-        preg_match_all('/^(#+)\s+(.*)$/m', $markdown, $matches);
+        \preg_match_all('/^(#+)\s+(.*)$/m', $markdown, $matches);
 
-        return array_map(
-            fn ($heading) => strtolower(trim($heading)),
+        return \array_map(
+            fn ($heading) => \strtolower(\trim($heading)),
             $matches[2]
         );
     }
@@ -31,11 +31,11 @@ final class RequiredSectionsRule implements RuleInterface
         $headings = $this->extractHeadings($content);
 
         foreach ($this->requiredSections as $section) {
-            $sectionLower = strtolower($section);
+            $sectionLower = \strtolower($section);
             $found = false;
 
             foreach ($headings as $heading) {
-                if (str_contains($heading, $sectionLower)) {
+                if (\str_contains($heading, $sectionLower)) {
                     $found = true;
                     break;
                 }

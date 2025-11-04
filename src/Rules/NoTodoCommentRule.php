@@ -18,10 +18,10 @@ final class NoTodoCommentRule implements RuleInterface
     public function check(string $content): ?LintIssue
     {
         $issues = null;
-        $lines = explode(PHP_EOL, $content);
+        $lines = \explode(PHP_EOL, $content);
 
         foreach ($lines as $i => $line) {
-            if (stripos($line, 'TODO') !== false) {
+            if (\stripos($line, 'TODO') !== false) {
                 $issues .= "Line " . ($i + 1) . " contains a TODO comment." . PHP_EOL;
             }
         }

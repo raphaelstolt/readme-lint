@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Stolt\ReadmeLint\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 use Stolt\ReadmeLint\Linter;
 use Stolt\ReadmeLint\LintIssue;
 use Stolt\ReadmeLint\Rules\RuleInterface;
@@ -16,14 +16,14 @@ final class LinterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->tempReadme = tempnam(sys_get_temp_dir(), 'readme_');
+        $this->tempReadme = \tempnam(\sys_get_temp_dir(), 'readme_');
         file_put_contents($this->tempReadme, "# Title\nSome content");
     }
 
     protected function tearDown(): void
     {
-        if (file_exists($this->tempReadme)) {
-            unlink($this->tempReadme);
+        if (\file_exists($this->tempReadme)) {
+            \unlink($this->tempReadme);
         }
     }
 

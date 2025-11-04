@@ -11,13 +11,13 @@ final class HeadingHierarchyRule implements RuleInterface
     public function check(string $content): ?LintIssue
     {
         $matches = [];
-        preg_match_all('/^(#+)\s+.+$/m', $content, $matches, PREG_SET_ORDER);
+        \preg_match_all('/^(#+)\s+.+$/m', $content, $matches, PREG_SET_ORDER);
 
         $previousLevel = 0;
         $issues = null;
 
         foreach ($matches as $match) {
-            $level = strlen($match[1]);
+            $level = \strlen($match[1]);
             if ($previousLevel && ($level - $previousLevel) > 1) {
                 $issues .= "Improper heading level progression: jumped from H{$previousLevel} to H{$level}.";
             }

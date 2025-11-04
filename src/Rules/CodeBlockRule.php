@@ -10,7 +10,7 @@ final class CodeBlockRule implements RuleInterface
 {
     public function check(string $content): ?LintIssue
     {
-        if (!preg_match('/```[\s\S]*?```/', $content)) {
+        if (!\preg_match('/```[\s\S]*?```/', $content)) {
             return new LintIssue(
                 'README is missing code examples (no fenced code blocks found).',
                 LintIssue::SEVERITY_WARNING,
