@@ -48,7 +48,7 @@
         "cs-fix": "php-cs-fixer --allow-risky=yes fix . -vv || true",
         "cs-lint": "php-cs-fixer fix --diff --stop-on-violation --verbose --dry-run --allow-risky=yes",
         "spell-check": "./vendor/bin/peck",
-        "validate-gitattributes": "./vendor/bin/lean-package-validator validate",
+        "validate-gitattributes": "./vendor/bin/lean-package-validator validate --align-export-ignores",
         "test-with-coverage": "export XDEBUG_MODE=coverage && phpunit --coverage-html coverage-reports",
         "dependency-analyse": "./vendor/bin/composer-dependency-analyser",
         "pre-commit-check": [
