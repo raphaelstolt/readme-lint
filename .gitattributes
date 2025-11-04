@@ -1,15 +1,18 @@
+# This file was partly modified by the lean package validator (http://git.io/lean-package-validator).
+
 * text=auto eol=lf
 
-.aiassistant/ export-ignore
-.editorconfig export-ignore
-.gitattributes export-ignore
-.github/ export-ignore
-.gitignore export-ignore
-.phpunit.result.cache export-ignore
-CHANGELOG.md export-ignore
-composer.lock export-ignore
-LICENSE.md export-ignore
-phpunit.xml.dist export-ignore
+.aiassistant/        export-ignore
+.editorconfig        export-ignore
+.gitattributes       export-ignore
+.github/             export-ignore
+.gitignore           export-ignore
+.php-cs-fixer.php    export-ignore
+CHANGELOG.md         export-ignore
+composer.lock        export-ignore
+LICENSE.md           export-ignore
+peck.json            export-ignore
+phpunit.xml.dist     export-ignore
 readme-lint-logo.png export-ignore
-README.md export-ignore
-tests/ export-ignore
+README.md            export-ignore
+tests/               export-ignore
