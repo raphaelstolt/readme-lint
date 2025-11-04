@@ -88,8 +88,9 @@ MD);
 
         $exitCode = $tester->execute(['file' => $path]);
 
-        $this->assertSame(Command::SUCCESS, $exitCode);
         $display = $tester->getDisplay();
+
+        $this->assertSame(Command::SUCCESS, $exitCode);
         $this->assertStringContainsString('looks good', $display);
         $this->assertStringContainsString('README score: 1', $display);
 

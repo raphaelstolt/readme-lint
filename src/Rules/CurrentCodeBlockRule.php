@@ -17,29 +17,39 @@ final class CurrentCodeBlockRule implements RuleInterface
 
         \preg_match_all('/```php(.*?)```/s', $content, $matches);
 
-        foreach ($matches[1] as $i => $code) {
-            $snippetPath = $tempDirectory . "/snippet_$i.php";
-            file_put_contents($snippetPath, "<?php\n" . \trim($code));
+        if (\count($matches) === 0) {
+            return null;
+        }
 
-            $result = $this->runPHPStan($snippetPath);
+        foreach ($matches[1] as $i => $code) {
+            $onlyTheCode = \trim(\str_replace(['```php', '``` php', '<?php'], ' ', $code));
+            $snippetPath = $tempDirectory . "/snippet_$i.php";
+            $temporaryCodeContent = "<?php " . PHP_EOL . $onlyTheCode;
+
+            file_put_contents($snippetPath, $temporaryCodeContent);
+
+            $result = $this->lintCodeBlock($snippetPath);
 
             if ($result['exitCode'] !== 0) {
                 echo "\033[33m⚠️  Potential issue in snippet #$i:\033[0m\n";
                 echo $result['output'] . "\n";
-            }
 
-            \unlink($snippetPath);
+                \unlink($snippetPath);
+                \rmdir($tempDirectory);
+
+                return new LintIssue($result['output'], LintIssue::SEVERITY_ERROR, 'Fix code snippet.');
+            }
         }
 
-        \rmdir($tempDirectory);
         return null;
     }
 
-    private function runPHPStan(string $file): array
+    private function lintCodeBlock(string $file): array
     {
-        $cmd = \escapeshellcmd("vendor/bin/phpstan analyse " . $file . " --no-progress --level=5");
-        $output = \shell_exec($cmd . " 2>&1");
-        $exitCode = (\str_contains($output, ' [ERROR] ')) ? 1 : 0;
+        $cmd = \escapeshellcmd("php -f " . $file);
+
+        \exec($cmd . " 2>&1", $output, $exitCode);
+
         return [
             'output' => $output,
             'exitCode' => $exitCode,
