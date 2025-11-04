@@ -51,11 +51,9 @@
         "validate-gitattributes": "./vendor/bin/lean-package-validator validate",
         "test-with-coverage": "export XDEBUG_MODE=coverage && phpunit --coverage-html coverage-reports",
         "dependency-analyse": "./vendor/bin/composer-dependency-analyser",
-        "static-analyse": "phpstan analyse --configuration phpstan.neon.dist",
         "pre-commit-check": [
             "@test",
             "@cs-lint",
-            "@static-analyse",
             "@dependency-analyse",
             "@spell-check",
             "@validate-gitattributes"
