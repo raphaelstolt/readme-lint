@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [v0.2.0] - 2025-11-30
+
+### Changed
+- PHP lint is used for code block checks instead of PHPStan. Closes [#3](https://github.com/raphaelstolt/readme-lint/issues/3).
+
 ## [v0.1.0] - 2025-10-30
 
 ### Added
@@ -21,6 +26,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 - Initial release.
 
-[Unreleased]: https://github.com/raphaelstolt/readme-lint/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/raphaelstolt/readme-lint/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/raphaelstolt/readme-lint/compare/v0.1.0...v0.2.0
 [v0.1.0]: https://github.com/raphaelstolt/readme-lint/compare/v0.0.2...v0.1.0
 [v0.0.2]: https://github.com/raphaelstolt/readme-lint/compare/v0.0.1...v0.0.2
