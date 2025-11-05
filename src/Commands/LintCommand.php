@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Stolt\ReadmeLint\Commands;
 
+use Stolt\ReadmeLint\Configuration;
 use Stolt\ReadmeLint\Linter;
 use Stolt\ReadmeLint\LintIssue;
 use Stolt\ReadmeLint\Rules\BadgeRule;
@@ -13,10 +14,12 @@ use Stolt\ReadmeLint\Rules\HeadingHierarchyRule;
 use Stolt\ReadmeLint\Rules\MaxLineLengthRule;
 use Stolt\ReadmeLint\Rules\NoTodoCommentRule;
 use Stolt\ReadmeLint\Rules\RequiredSectionsRule;
+use Stolt\ReadmeLint\Rules\Resolver;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
@@ -32,6 +35,16 @@ final class LintCommand extends Command
             InputArgument::OPTIONAL,
             'The path to the README file',
             'README.md'
+        )->addOption(
+            'rules',
+            null,
+            InputOption::VALUE_OPTIONAL,
+            "Comma-separated list of lint rules to apply (e.g. RequiredSectionsRule, MaxLineLengthRule)"
+        )->addOption(
+            'config',
+            null,
+            InputOption::VALUE_OPTIONAL,
+            'Path to a readme-lint configuration file'
         );
     }
 
@@ -53,15 +66,44 @@ final class LintCommand extends Command
             }
         }
 
-        $linter = (new Linter($path))->addRules([
-            new RequiredSectionsRule(),
-            new BadgeRule(),
-            new CodeBlockRule(),
-            new CurrentCodeBlockRule(),
-            new MaxLineLengthRule(),
-            new NoTodoCommentRule(),
-            new HeadingHierarchyRule()
-        ]);
+        $linter = (new Linter($path));
+        $rulesResolver = new Resolver();
+
+        $viaOptionSetConfigPath = (string) $input->getOption('config');
+        $viaOptionSetRules = (string) $input->getOption('rules');
+
+        if ($viaOptionSetConfigPath !== '') {
+            if (!\file_exists($viaOptionSetConfigPath)) {
+                $output->writeln('Configuration file <error>not</error> found at <info>' . $viaOptionSetConfigPath . '</info>');
+
+                return Command::FAILURE;
+            }
+
+            $config = require $viaOptionSetConfigPath;
+
+            if ($config instanceof Configuration) {
+                $linter->addRules($config->getRulesToApply());
+            } elseif (\is_array($config)) {
+                // Expecting ['rules' => [FQCN|string,...]]
+                if (isset($config['rules']) && \is_array($config['rules'])) {
+                    $resolved = $rulesResolver->resolveRulesArray($config['rules']);
+                    $linter->addRules($resolved);
+                }
+            }
+        } elseif ($viaOptionSetRules !== '') {
+            $names = \array_values(\array_filter(\array_map('trim', \explode(',', $viaOptionSetRules))));
+            $linter->addRules($rulesResolver->resolveRulesByNames($names));
+        } else {
+            $linter->addRules([
+                new RequiredSectionsRule(),
+                new BadgeRule(),
+                new CodeBlockRule(),
+                new CurrentCodeBlockRule(),
+                new MaxLineLengthRule(),
+                new NoTodoCommentRule(),
+                new HeadingHierarchyRule()
+            ]);
+        }
 
         $lintResult = $linter->lint();
         $score = $lintResult['score'];

@@ -28,6 +28,16 @@ final class Linter
         return $this;
     }
 
+    public function getRules(): array
+    {
+        return $this->rules;
+    }
+
+    public function hasRules(): bool
+    {
+        return \count($this->rules) > 0;
+    }
+
     public function lint(): array
     {
         if (!\file_exists($this->readmePath)) {

@@ -4,228 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1699a1d8a5b5e79df77549e13c4b914",
+    "content-hash": "b81a44e48de0e2e40a08042ad4077f0d",
     "packages": [
-        {
-            "name": "nunomaduro/termwind",
-            "version": "v2.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nunomaduro/termwind.git",
-                "reference": "dfa08f390e509967a15c22493dc0bac5733d9123"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/dfa08f390e509967a15c22493dc0bac5733d9123",
-                "reference": "dfa08f390e509967a15c22493dc0bac5733d9123",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": "^8.2",
-                "symfony/console": "^7.2.6"
-            },
-            "require-dev": {
-                "illuminate/console": "^11.44.7",
-                "laravel/pint": "^1.22.0",
-                "mockery/mockery": "^1.6.12",
-                "pestphp/pest": "^2.36.0 || ^3.8.2",
-                "phpstan/phpstan": "^1.12.25",
-                "phpstan/phpstan-strict-rules": "^1.6.2",
-                "symfony/var-dumper": "^7.2.6",
-                "thecodingmachine/phpstan-strict-rules": "^1.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Termwind\\Laravel\\TermwindServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Functions.php"
-                ],
-                "psr-4": {
-                    "Termwind\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "Its like Tailwind CSS, but for the console.",
-            "keywords": [
-                "cli",
-                "console",
-                "css",
-                "package",
-                "php",
-                "style"
-            ],
-            "support": {
-                "issues": "https://github.com/nunomaduro/termwind/issues",
-                "source": "https://github.com/nunomaduro/termwind/tree/v2.3.1"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/enunomaduro",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/xiCO2k",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-05-08T08:14:37+00:00"
-        },
-        {
-            "name": "peckphp/peck",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/peckphp/peck.git",
-                "reference": "f5bb798d5176c52793dc6c715b811f0320246d18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/peckphp/peck/zipball/f5bb798d5176c52793dc6c715b811f0320246d18",
-                "reference": "f5bb798d5176c52793dc6c715b811f0320246d18",
-                "shasum": ""
-            },
-            "require": {
-                "nunomaduro/termwind": "^1.17.0|^2.3.0",
-                "php": "^8.2",
-                "symfony/console": "^6.4.17|^7.2.1",
-                "symfony/finder": "^6.4.17|^7.2.2",
-                "symfony/process": "^6.4.17|^7.2.2"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.20.0",
-                "pestphp/pest": "^2.36|^3.7.4",
-                "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.2.3",
-                "phpstan/phpstan": "^1.12.16",
-                "rector/rector": "^1.2.10",
-                "symfony/var-dumper": "^7.2.0"
-            },
-            "bin": [
-                "bin/peck"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Peck\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "Peck is a powerful CLI tool designed to identify pure wording or spelling (grammar) mistakes in your codebase.",
-            "keywords": [
-                "checker",
-                "codebase",
-                "php",
-                "spelling"
-            ],
-            "support": {
-                "issues": "https://github.com/peckphp/peck/issues",
-                "source": "https://github.com/peckphp/peck/tree/v0.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/enunomaduro",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2025-10-06T19:46:59+00:00"
-        },
-        {
-            "name": "phpstan/phpstan",
-            "version": "2.1.17",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "89b5ef665716fa2a52ecd2633f21007a6a349053"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/89b5ef665716fa2a52ecd2633f21007a6a349053",
-                "reference": "89b5ef665716fa2a52ecd2633f21007a6a349053",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0"
-            },
-            "conflict": {
-                "phpstan/phpstan-shim": "*"
-            },
-            "bin": [
-                "phpstan",
-                "phpstan.phar"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHPStan - PHP Static Analysis Tool",
-            "keywords": [
-                "dev",
-                "static analysis"
-            ],
-            "support": {
-                "docs": "https://phpstan.org/user-guide/getting-started",
-                "forum": "https://github.com/phpstan/phpstan/discussions",
-                "issues": "https://github.com/phpstan/phpstan/issues",
-                "security": "https://github.com/phpstan/phpstan/security/policy",
-                "source": "https://github.com/phpstan/phpstan-src"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ondrejmirtes",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/phpstan",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-05-21T20:55:28+00:00"
-        },
         {
             "name": "psr/container",
             "version": "2.0.2",
@@ -442,16 +222,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v7.3.0",
+            "version": "v7.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "ec2344cf77a48253bbca6939aa3d2477773ea63d"
+                "reference": "9f696d2f1e340484b4683f7853b273abff94421f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/ec2344cf77a48253bbca6939aa3d2477773ea63d",
-                "reference": "ec2344cf77a48253bbca6939aa3d2477773ea63d",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/9f696d2f1e340484b4683f7853b273abff94421f",
+                "reference": "9f696d2f1e340484b4683f7853b273abff94421f",
                 "shasum": ""
             },
             "require": {
@@ -486,7 +266,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v7.3.0"
+                "source": "https://github.com/symfony/finder/tree/v7.3.5"
             },
             "funding": [
                 {
@@ -498,11 +278,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-30T19:00:26+00:00"
+            "time": "2025-10-15T18:45:57+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1814,6 +1598,168 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
             "time": "2025-05-31T08:24:38+00:00"
+        },
+        {
+            "name": "nunomaduro/termwind",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nunomaduro/termwind.git",
+                "reference": "dfa08f390e509967a15c22493dc0bac5733d9123"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/dfa08f390e509967a15c22493dc0bac5733d9123",
+                "reference": "dfa08f390e509967a15c22493dc0bac5733d9123",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^8.2",
+                "symfony/console": "^7.2.6"
+            },
+            "require-dev": {
+                "illuminate/console": "^11.44.7",
+                "laravel/pint": "^1.22.0",
+                "mockery/mockery": "^1.6.12",
+                "pestphp/pest": "^2.36.0 || ^3.8.2",
+                "phpstan/phpstan": "^1.12.25",
+                "phpstan/phpstan-strict-rules": "^1.6.2",
+                "symfony/var-dumper": "^7.2.6",
+                "thecodingmachine/phpstan-strict-rules": "^1.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Termwind\\Laravel\\TermwindServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Functions.php"
+                ],
+                "psr-4": {
+                    "Termwind\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Its like Tailwind CSS, but for the console.",
+            "keywords": [
+                "cli",
+                "console",
+                "css",
+                "package",
+                "php",
+                "style"
+            ],
+            "support": {
+                "issues": "https://github.com/nunomaduro/termwind/issues",
+                "source": "https://github.com/nunomaduro/termwind/tree/v2.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/xiCO2k",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-05-08T08:14:37+00:00"
+        },
+        {
+            "name": "peckphp/peck",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peckphp/peck.git",
+                "reference": "f5bb798d5176c52793dc6c715b811f0320246d18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peckphp/peck/zipball/f5bb798d5176c52793dc6c715b811f0320246d18",
+                "reference": "f5bb798d5176c52793dc6c715b811f0320246d18",
+                "shasum": ""
+            },
+            "require": {
+                "nunomaduro/termwind": "^1.17.0|^2.3.0",
+                "php": "^8.2",
+                "symfony/console": "^6.4.17|^7.2.1",
+                "symfony/finder": "^6.4.17|^7.2.2",
+                "symfony/process": "^6.4.17|^7.2.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20.0",
+                "pestphp/pest": "^2.36|^3.7.4",
+                "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.2.3",
+                "phpstan/phpstan": "^1.12.16",
+                "rector/rector": "^1.2.10",
+                "symfony/var-dumper": "^7.2.0"
+            },
+            "bin": [
+                "bin/peck"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Peck\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Peck is a powerful CLI tool designed to identify pure wording or spelling (grammar) mistakes in your codebase.",
+            "keywords": [
+                "checker",
+                "codebase",
+                "php",
+                "spelling"
+            ],
+            "support": {
+                "issues": "https://github.com/peckphp/peck/issues",
+                "source": "https://github.com/peckphp/peck/tree/v0.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2025-10-06T19:46:59+00:00"
         },
         {
             "name": "phar-io/manifest",

@@ -3,7 +3,11 @@
     "ignore": {
         "words": [
             "php",
-            "linter"
+            "linter",
+            "inits",
+            "autoloads",
+            "subdirectory",
+            "fqcn"
         ],
         "paths": []
     }

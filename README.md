@@ -30,6 +30,41 @@ Available commands:
 
 Available lint rules can be found in the [Rules](src/Rules) directory.
 
+### Configuration
+
+To configure the lint rules to apply, you have several options:
+
+1. Create a `.readme-lint.php.dist` file in the root of your project, which will be used as a default configuration when 
+present.
+
+2. Create a `some-readme-lint-configuration-file.php` file which you pass to the CLI via an option.
+
+``` bash
+php bin/readme-lint lint --config=some-readme-lint-configuration-file.php
+```
+
+3. Pass a list of rules as a comma-separated string to the CLI. You can use FQCNs or base names for the rules to apply.
+
+``` bash
+php bin/readme-lint lint --rules Stolt\ReadmeLint\Rules\LogoPresenceRule,NoTodoCommentRule
+```
+
+> [!NOTE]
+> To add `custom lint rules`, you must first create a class which implements the `Stolt\ReadmeLint\Rule\RuleInterface` interface
+> and then make them available via your `readme-lint` configuration file like shown next.
+
+``` php
+<?php declare(strict_types=1);
+
+use Stolt\ReadmeLint\Configuration\Configuration;
+
+$configuration = new Configuration();
+$configuration->setCustomRulesDirectory(
+    '/some/path/to/custom/rules',
+    'Custom\Rules\Namespace'
+);
+```
+
 ### Running tests
 
 ``` bash
