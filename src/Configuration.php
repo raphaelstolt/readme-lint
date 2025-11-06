@@ -21,6 +21,8 @@ final class Configuration
     /**
      * @param Linter $linter
      * @throws ReflectionException
+     *
+     * TODO: Remove linter dependency from configuration.
      */
     public function __construct(Linter $linter)
     {

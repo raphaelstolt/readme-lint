@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stolt\ReadmeLint\Commands;
 
 use Stolt\ReadmeLint\Configuration;
+use Stolt\ReadmeLint\Configuration\Resolver as ConfigurationResolver;
 use Stolt\ReadmeLint\Linter;
 use Stolt\ReadmeLint\LintIssue;
 use Stolt\ReadmeLint\Rules\BadgeRule;
@@ -39,7 +40,7 @@ final class LintCommand extends Command
             'rules',
             null,
             InputOption::VALUE_OPTIONAL,
-            "Comma-separated list of lint rules to apply (e.g. RequiredSectionsRule, MaxLineLengthRule)"
+            'Comma-separated list of lint rules to apply (e.g. RequiredSectionsRule, MaxLineLengthRule)'
         )->addOption(
             'config',
             null,
@@ -68,18 +69,20 @@ final class LintCommand extends Command
 
         $linter = (new Linter($path));
         $rulesResolver = new Resolver();
+        $configurationResolver = new ConfigurationResolver();
 
-        $viaOptionSetConfigPath = (string) $input->getOption('config');
+        $viaOptionSetConfigurationPath = (string) $input->getOption('config');
         $viaOptionSetRules = (string) $input->getOption('rules');
 
-        if ($viaOptionSetConfigPath !== '') {
-            if (!\file_exists($viaOptionSetConfigPath)) {
-                $output->writeln('Configuration file <error>not</error> found at <info>' . $viaOptionSetConfigPath . '</info>');
+        $configurationPath = $configurationResolver->resolveConfigurationPath($viaOptionSetConfigurationPath);
 
+        if ($configurationPath !== null) {
+            if (!\file_exists($configurationPath)) {
+                $output->writeln('Configuration file <error>not</error> found at <info>' . $configurationPath . '</info>');
                 return Command::FAILURE;
             }
 
-            $config = require $viaOptionSetConfigPath;
+            $config = require $configurationPath;
 
             if ($config instanceof Configuration) {
                 $linter->addRules($config->getRulesToApply());
@@ -90,10 +93,16 @@ final class LintCommand extends Command
                     $linter->addRules($resolved);
                 }
             }
-        } elseif ($viaOptionSetRules !== '') {
+        }
+
+        // Override config rules with --rules option if provided
+        if ($viaOptionSetRules !== '') {
             $names = \array_values(\array_filter(\array_map('trim', \explode(',', $viaOptionSetRules))));
+            // Clear previously added rules and use only the ones from --rules option
+            $linter = (new Linter($path));
             $linter->addRules($rulesResolver->resolveRulesByNames($names));
-        } else {
+        } elseif ($configurationPath === null) {
+            // No config found and no rules option provided, use defaults
             $linter->addRules([
                 new RequiredSectionsRule(),
                 new BadgeRule(),

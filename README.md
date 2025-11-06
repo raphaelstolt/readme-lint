@@ -62,13 +62,16 @@ php bin/readme-lint lint --rules Stolt\ReadmeLint\Rules\LogoPresenceRule,NoTodoC
 ``` php
 <?php declare(strict_types=1);
 
-use Stolt\ReadmeLint\Configuration\Configuration;
+use Stolt\ReadmeLint\Configuration;
+use Stolt\ReadmeLint\Linter;
 
-$configuration = new Configuration();
+$configuration = new Configuration(new Linter(getcwd()));
 $configuration->setCustomRulesDirectory(
     '/some/path/to/custom/rules',
     'Custom\Rules\Namespace'
-);
+)->addRulesToApply(['CustomRuleA', 'CustomRuleB', 'NoTodoCommentRule']);
+
+return $configuration;
 ```
 
 ### Running tests
