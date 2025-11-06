@@ -4,6 +4,12 @@
          title="Readme-lint logo">
 </p>
 
+![Test Status](https://github.com/raphaelstolt/readme-lint/workflows/test/badge.svg)
+[![Version](http://img.shields.io/packagist/v/stolt/readme-lint.svg?style=flat)](https://packagist.org/packages/stolt/readme-lint)
+![PHP Version](https://img.shields.io/badge/php-8.1+-ff69b4.svg)
+![Downloads](https://img.shields.io/packagist/dt/stolt/readme-lint)
+[![PDS Skeleton](https://img.shields.io/badge/pds-skeleton-blue.svg?style=flat)](https://github.com/php-pds/skeleton)
+
 # readme-lint
 
 This library and its CLI supports you in linting `README.md` Markdown files via PHP. For inspiration for good READMEs,
@@ -34,7 +40,7 @@ Available lint rules can be found in the [Rules](src/Rules) directory.
 
 To configure the lint rules to apply, you have several options:
 
-1. Create a `.readme-lint.php.dist` file in the root of your project, which will be used as a default configuration when 
+1. Create a `.readme-lint.php` file in the root of your project, which will be used as a default configuration when 
 present.
 
 2. Create a `some-readme-lint-configuration-file.php` file which you pass to the CLI via an option.
