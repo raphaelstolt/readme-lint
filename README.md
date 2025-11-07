@@ -57,7 +57,7 @@ php bin/readme-lint lint --rules Stolt\ReadmeLint\Rules\LogoPresenceRule,NoTodoC
 ```
 
 > [!NOTE]
-> To add `custom lint rules`, you must first create a class which implements the `Stolt\ReadmeLint\Rule\RuleInterface` interface
+> To add `custom lint rules`, you must first create classes which implement the `Stolt\ReadmeLint\Rule\RuleInterface` interface
 > and then make them available via your `readme-lint` configuration file like shown next.
 
 ``` php
