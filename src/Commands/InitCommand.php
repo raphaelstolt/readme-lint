@@ -43,7 +43,7 @@ final class InitCommand extends Command
         }
 
         if (\file_exists($targetPath)) {
-            $output->writeln('<comment>README already exists: ' . $targetPath . '</comment>');
+            $output->writeln('<comment>' . self::DEFAULT_FILENAME . ' already exists: ' . $targetPath . '</comment>');
 
             return Command::FAILURE;
         }
@@ -51,12 +51,12 @@ final class InitCommand extends Command
         $template = $this->defaultReadmeTemplate();
 
         if (@file_put_contents($targetPath, $template) === false) {
-            $output->writeln('<error>Failed to write README: ' . $targetPath . '</error>');
+            $output->writeln('<error>Failed to write ' . self::DEFAULT_FILENAME . ': ' . $targetPath . '</error>');
 
             return Command::FAILURE;
         }
 
-        $output->writeln('<info>README created at: ' . $targetPath . '</info>');
+        $output->writeln('<info>' . self::DEFAULT_FILENAME . ' created at: ' . $targetPath . '</info>');
 
         return Command::SUCCESS;
     }
