@@ -1,6 +1,6 @@
 {
     "name": "stolt/readme-lint",
-    "description": "A library and CLI to lint README.md files.",
+    "description": "A library and CLI for linting, spell-checking, and creating README.md files.",
     "keywords": [
         "README.md",
         "readme",
@@ -8,6 +8,8 @@
         "cli",
         "lint",
         "linter",
+        "spell-checker",
+        "creator",
         "dev"
     ],
     "type": "library",
