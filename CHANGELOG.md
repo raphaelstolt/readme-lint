@@ -7,9 +7,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
-## [v0.3.0] - 2025-11-06
+## [v0.3.0] - 2025-11-07
 
 ### Added
+- New `init` command which creates a default README.md file. Closes [#4](https://github.com/raphaelstolt/readme-lint/issues/4).
 - New `configuration` mechanism to specify the rules to apply and also add custom rules. Closes [#1](https://github.com/raphaelstolt/readme-lint/issues/1).
 
 ## [v0.2.0] - 2025-11-05
