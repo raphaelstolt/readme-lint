@@ -2,61 +2,73 @@
 
 namespace Stolt\ReadmeLint\Commands;
 
+use Stolt\ReadmeLint\Commands\Repository\TemplateRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'init',
-    description: 'Create an initial README.md file in the current working directory'
+    description: 'Create an initial README.md file in the current working or provided directory'
 )]
 final class InitCommand extends Command
 {
     private const DEFAULT_FILENAME = 'README.md';
+    private TemplateRepository $templateRepository;
+
+    public function __construct(TemplateRepository $templateRepository = new TemplateRepository())
+    {
+        parent::__construct();
+
+        $this->templateRepository = $templateRepository;
+    }
 
     protected function configure(): void
     {
-        $this->addOption(
+        $this->addArgument(
             'path',
-            null,
-            InputOption::VALUE_OPTIONAL,
-            'Target path (directory or full file path) for the README.',
-            \getcwd() . DIRECTORY_SEPARATOR . self::DEFAULT_FILENAME
+            InputArgument::OPTIONAL,
+            'Target path for the README.md file',
+            realpath(\getcwd())
         );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $pathOption = (string) $input->getOption('path');
+        $pathArgument = (string) $input->getArgument('path');
 
-        $targetPath = $this->normalizeTargetPath($pathOption);
-        $dir = \is_dir($pathOption) ? \rtrim($pathOption, DIRECTORY_SEPARATOR) : \dirname($targetPath);
+        $targetPath = $this->normalizeTargetPath($pathArgument);
+        $directory = \is_dir($pathArgument) ? \rtrim($pathArgument, DIRECTORY_SEPARATOR) : \dirname($targetPath);
 
-        if (!\is_dir($dir)) {
-            if (!@\mkdir($dir, 0777, true) && !\is_dir($dir)) {
-                $output->writeln('<error>Failed to create directory: <info>' . $dir . '</info></error>');
+        if (!\is_dir($directory)) {
+            if (!@\mkdir($directory, 0777, true) && !\is_dir($directory)) {
+                $output->writeln('Failed to create directory <info>' . $directory . '</info>.');
 
                 return Command::FAILURE;
             }
         }
 
+        $directoryOperatedIn = realpath(dirname($targetPath));
+
         if (\file_exists($targetPath)) {
-            $output->writeln('<comment>' . self::DEFAULT_FILENAME . ' already exists: ' . $targetPath . '</comment>');
+            $output->writeln('<info>' . self::DEFAULT_FILENAME . '</info> already exists at <info>' . $directoryOperatedIn . '</info>.');
 
             return Command::FAILURE;
         }
 
-        $template = $this->defaultReadmeTemplate();
+        $template = $this->templateRepository->getDefaultReadmeTemplate(\basename(\getcwd()));
+
+        // TODO: Validate target path has no README.md file.
 
         if (@file_put_contents($targetPath, $template) === false) {
-            $output->writeln('<error>Failed to write ' . self::DEFAULT_FILENAME . ': ' . $targetPath . '</error>');
+            $output->writeln('Failed to write <info>' . self::DEFAULT_FILENAME . '</info> in <info>' . $directoryOperatedIn . '</info>.');
 
             return Command::FAILURE;
         }
 
-        $output->writeln('<info>' . self::DEFAULT_FILENAME . ' created at: ' . $targetPath . '</info>');
+        $output->writeln('Created <info>' . self::DEFAULT_FILENAME . '</info> in <info>' . $directoryOperatedIn . '</info>.');
 
         return Command::SUCCESS;
     }
@@ -70,35 +82,5 @@ final class InitCommand extends Command
 
         // If a file-like path is given, use as-is
         return $pathOption;
-    }
-
-    private function defaultReadmeTemplate(): string
-    {
-        $projectName = \basename(\getcwd());
-
-        return <<<MD
-# {$projectName}
-
-Short project description.
-
-## Installation
-
-```bash
-composer install
-```
-
-## Usage
-
-Describe how to use the project.
-
-## Contributing
-
-Please submit issues and pull requests.
-
-## License
-
-This project is licensed under the MIT License. See LICENSE.md for details.
-
-MD;
     }
 }
